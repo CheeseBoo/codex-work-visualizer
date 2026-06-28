@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codex Work Visualizer"
+  short_description: "Create a quick PNG infographic of recent Codex work."
+  default_prompt: "Use $codex-work-visualizer to turn the recent Codex work into a concise PNG infographic."
