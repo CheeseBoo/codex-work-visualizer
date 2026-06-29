@@ -1,0 +1,92 @@
+# Codex Work Visualizer
+
+[English](README.md) | [简体中文](README.zh-CN.md)
+
+`codex-work-visualizer` 是一个轻量级 Codex skill，用来把 Codex 刚刚完成的工作整理成一张便于快速审阅的 PNG 信息图。
+
+它适合这类提示：
+
+- “可视化一下你刚才做了什么”
+- “生成本次工作信息图”
+- “把刚才的工作总结成图片”
+- “Create a PNG visual recap of the work you just did”
+
+这个 skill 优先使用 GPT-Image-2 或当前可用的图像生成能力直接生成图片，而不是构建 HTML dashboard 或用脚本绘图。它的目标是让用户在大约 30 秒内看清楚本次工作的目标、主要动作、改动范围、验证状态和需要复核的风险点。
+
+## 输出内容
+
+它会生成一张单页视觉审阅卡，通常包含：
+
+- 任务目标
+- 已完成工作
+- 重要改动文件或模块
+- 验证状态
+- 复核点与风险
+- 可选的下一步
+
+这张图片是快速审阅辅助，不是正式审计报告。需要精确核验时，仍应查看原始对话、命令输出和 `git diff`。
+
+## 安装
+
+把仓库克隆到 Codex 的 skills 目录：
+
+```bash
+mkdir -p ~/.codex/skills
+git clone git@github.com:CheeseBoo/codex-work-visualizer.git ~/.codex/skills/codex-work-visualizer
+```
+
+然后重启 Codex，或开启一个新对话，让 skill 列表刷新。
+
+如果你使用的是远程 Codex 项目，也需要在远程机器上安装：
+
+```bash
+mkdir -p ~/.codex/skills
+git clone git@github.com:CheeseBoo/codex-work-visualizer.git ~/.codex/skills/codex-work-visualizer
+```
+
+### 让 Agent 自动安装
+
+你也可以直接让 Codex、Claude Code 或其他 AI 编程 Agent 从这个 GitHub 仓库安装。把仓库地址交给 Agent，让它扫描 skill 文件、克隆到当前工具实际读取的 skills 目录，并运行验证脚本。
+
+可用提示词：
+
+```text
+请把 https://github.com/CheeseBoo/codex-work-visualizer 安装为本地 AI skill。
+把它克隆到 ~/.codex/skills/codex-work-visualizer，阅读 SKILL.md，并运行验证脚本。
+如果当前是远程开发会话，请安装到实际运行 Agent 的远程机器上。
+```
+
+虽然这个仓库按 Codex skill 打包，但核心工作流是清晰的 Markdown 指令。你也可以很方便地把 `SKILL.md` 中的核心说明迁移到 Claude Code、Cursor 或其他类似 AI 工具的项目指令或 Agent 指令机制中。
+
+## 仓库结构
+
+```text
+SKILL.md
+agents/openai.yaml
+references/visual-brief-template.md
+scripts/validate_skill.py
+```
+
+## 验证
+
+```bash
+python3 scripts/validate_skill.py .
+```
+
+预期输出：
+
+```text
+Skill validation passed.
+```
+
+## 说明
+
+- 仓库根目录就是 skill 根目录。
+- 这个 skill 刻意不包含 HTML dashboard 或确定性绘图脚本。
+- 如果图像生成能力不可用，skill 会退回为输出最终图片提示词和一份紧凑的 Markdown 总结。
+
+## Star History
+
+[![Star History Chart](https://api.star-history.com/image?repos=cheeseboo/codex-work-visualizer&type=Date)](https://www.star-history.com/#CheeseBoo/codex-work-visualizer&Date)
+
+这张图由外部 star-history 服务生成。仓库公开时，它可以展示实时星标数据；私有仓库通常不会向第三方图表服务暴露数据。这里使用 PNG 端点而不是 SVG 端点，因为 SVG 版本会内嵌一个远程 GitHub 头像，在 GitHub README 渲染时可能显示为破损图片。
