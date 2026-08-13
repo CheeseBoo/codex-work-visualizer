@@ -114,4 +114,4 @@ Skill validation passed.
 - The repository root is the skill root.
 - The skill intentionally does not include an HTML dashboard or deterministic plotting script.
 - If image generation is unavailable, the skill falls back to returning the final image prompt and a compact Markdown recap.
-- If you find this repository useful, please star it to follow future updates.
+- If you find this repository useful, please star it 🌟 to follow future updates.
