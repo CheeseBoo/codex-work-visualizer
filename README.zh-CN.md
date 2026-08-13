@@ -114,4 +114,4 @@ Skill validation passed.
 - 仓库根目录就是 skill 根目录。
 - 这个 skill 刻意不包含 HTML dashboard 或确定性绘图脚本。
 - 如果图像生成能力不可用，skill 会退回为输出最终图片提示词和一份紧凑的 Markdown 总结。
-- 如果你觉得这个仓库对你有用，Star 一下以追踪这个仓库的后续更新。
+- 如果你觉得这个仓库对你有用，Star 🌟 一下以追踪这个仓库的后续更新。
