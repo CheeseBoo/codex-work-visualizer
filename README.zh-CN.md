@@ -110,5 +110,3 @@ Skill validation passed.
 ## Star History
 
 [![Star History Chart](https://api.star-history.com/image?repos=cheeseboo/codex-work-visualizer&type=Date)](https://www.star-history.com/#CheeseBoo/codex-work-visualizer&Date)
-
-这张图由外部 star-history 服务生成。仓库公开时，它可以展示实时星标数据；私有仓库通常不会向第三方图表服务暴露数据。这里使用 PNG 端点而不是 SVG 端点，因为 SVG 版本会内嵌一个远程 GitHub 头像，在 GitHub README 渲染时可能显示为破损图片。
