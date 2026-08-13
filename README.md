@@ -13,6 +13,12 @@ It is designed for prompts like:
 - "把刚才的工作总结成图片"
 - "Create a PNG visual recap of the work you just did"
 
+You can also invoke the skill directly in Codex with:
+
+```text
+$codex-work-visualizer
+```
+
 The skill favors direct GPT-Image-2 / image-generation output over HTML dashboards or scripted chart rendering. It first classifies the work as conversation-only, code-change, or mixed. Conversation-only work is summarized from the conversation without inspecting code or git diffs; code-change work includes changed areas and validation status.
 
 ## What It Produces
