@@ -4,13 +4,13 @@
 
 [English](README.md) | [简体中文](README.zh-CN.md)
 
-`codex-work-visualizer` is a lightweight Codex skill that turns recent Codex work into a quick PNG infographic for human review, while keeping the workflow easy to use and extensible.
+`codex-work-visualizer` is a lightweight Codex skill that turns recent Codex work into a quick PNG infographic for human review, while keeping the workflow easy to use and extensible. It helps users get through large volumes of review work in as little time as possible.
 
 It is designed for prompts like:
 
-- "可视化一下你刚才做了什么"
-- "生成本次工作信息图"
-- "把刚才的工作总结成图片"
+- "Visualize what you just did"
+- "Generate an infographic for this work"
+- "Turn the work you just did into an image summary"
 - "Create a PNG visual recap of the work you just did"
 
 You can also invoke the skill directly in Codex with either of these forms:
@@ -46,7 +46,21 @@ Current-task evidence takes priority. A repository's pre-existing dirty files or
 
 ## Install
 
-Clone the repository into your Codex skills directory:
+### Agent-Assisted Install (Recommended)
+
+We recommend asking Codex, Claude Code, or another AI coding agent to install the skill automatically. Give the agent this GitHub repository URL and ask it to place the skill in the active skills directory and run the validation script.
+
+Suggested prompt:
+
+```text
+Install https://github.com/CheeseBoo/codex-work-visualizer as a local AI skill.
+Clone it into ~/.codex/skills/codex-work-visualizer, read SKILL.md, and run the validation script.
+If this is a remote development session, install it on the remote machine that runs the agent.
+```
+
+### Manual Install
+
+If you prefer to install the skill yourself, clone the repository into your Codex skills directory:
 
 ```bash
 mkdir -p ~/.codex/skills
@@ -60,18 +74,6 @@ For remote Codex projects, install it on the remote machine as well:
 ```bash
 mkdir -p ~/.codex/skills
 git clone git@github.com:CheeseBoo/codex-work-visualizer.git ~/.codex/skills/codex-work-visualizer
-```
-
-### Agent-Assisted Install
-
-You can also ask Codex, Claude Code, or another AI coding agent to install it directly from this repository. Give the agent this repo URL and ask it to inspect the skill files, clone the repo into the active skills directory, and run validation.
-
-Suggested prompt:
-
-```text
-Install https://github.com/CheeseBoo/codex-work-visualizer as a local AI skill.
-Clone it into ~/.codex/skills/codex-work-visualizer, read SKILL.md, and run the validation script.
-If this is a remote development session, install it on the remote machine that runs the agent.
 ```
 
 Although this repository is packaged as a Codex skill, the workflow is intentionally simple Markdown guidance. It can be adapted easily for Claude Code, Cursor, or other similar AI coding tools by copying the core instructions from `SKILL.md` into that tool's project or agent-instruction mechanism.

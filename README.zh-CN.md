@@ -1,8 +1,10 @@
 # Codex Work Visualizer
 
+> **从工作到洞察。**
+
 [English](README.md) | [简体中文](README.zh-CN.md)
 
-`codex-work-visualizer` 是一个轻量级 Codex skill，用来把 Codex 刚刚完成的工作整理成一张便于快速审阅的 PNG 信息图，同时兼顾使用便捷性与后续可扩展性。
+`codex-work-visualizer` 是一个轻量级 Codex skill，用来把 Codex 刚刚完成的工作整理成一张便于快速审阅的 PNG 信息图，同时兼顾使用便捷性与后续可扩展性。它帮助使用者在面对大量审阅任务时，以尽可能少的时间完成审阅。
 
 它适合这类提示：
 
@@ -44,7 +46,21 @@ $codex-work-visualizer
 
 ## 安装
 
-把仓库克隆到 Codex 的 skills 目录：
+### 让 Agent 自动安装（推荐）
+
+我们更推荐让 Codex、Claude Code 或其他 AI 编程 Agent 自动安装这个 skill。你只需要把 GitHub 仓库地址交给 Agent，让它将 skill 安装到当前工具实际使用的 skills 目录，并运行验证脚本。
+
+可用提示词：
+
+```text
+请把 https://github.com/CheeseBoo/codex-work-visualizer 安装为本地 AI skill。
+把它克隆到 ~/.codex/skills/codex-work-visualizer，阅读 SKILL.md，并运行验证脚本。
+如果当前是远程开发会话，请安装到实际运行 Agent 的远程机器上。
+```
+
+### 手动安装
+
+如果你希望自己安装，也可以把仓库克隆到 Codex 的 skills 目录：
 
 ```bash
 mkdir -p ~/.codex/skills
@@ -58,18 +74,6 @@ git clone git@github.com:CheeseBoo/codex-work-visualizer.git ~/.codex/skills/cod
 ```bash
 mkdir -p ~/.codex/skills
 git clone git@github.com:CheeseBoo/codex-work-visualizer.git ~/.codex/skills/codex-work-visualizer
-```
-
-### 让 Agent 自动安装
-
-你也可以直接让 Codex、Claude Code 或其他 AI 编程 Agent 从这个 GitHub 仓库安装。把仓库地址交给 Agent，让它扫描 skill 文件、克隆到当前工具实际读取的 skills 目录，并运行验证脚本。
-
-可用提示词：
-
-```text
-请把 https://github.com/CheeseBoo/codex-work-visualizer 安装为本地 AI skill。
-把它克隆到 ~/.codex/skills/codex-work-visualizer，阅读 SKILL.md，并运行验证脚本。
-如果当前是远程开发会话，请安装到实际运行 Agent 的远程机器上。
 ```
 
 虽然这个仓库按 Codex skill 打包，但核心工作流是清晰的 Markdown 指令。你也可以很方便地把 `SKILL.md` 中的核心说明迁移到 Claude Code、Cursor 或其他类似 AI 工具的项目指令或 Agent 指令机制中。
