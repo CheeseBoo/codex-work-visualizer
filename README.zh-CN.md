@@ -114,7 +114,3 @@ Skill validation passed.
 - 仓库根目录就是 skill 根目录。
 - 这个 skill 刻意不包含 HTML dashboard 或确定性绘图脚本。
 - 如果图像生成能力不可用，skill 会退回为输出最终图片提示词和一份紧凑的 Markdown 总结。
-
-## GitHub Stars
-
-[![GitHub stars](https://img.shields.io/github/stars/CheeseBoo/codex-work-visualizer?style=flat)](https://github.com/CheeseBoo/codex-work-visualizer)

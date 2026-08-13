@@ -114,7 +114,3 @@ Skill validation passed.
 - The repository root is the skill root.
 - The skill intentionally does not include an HTML dashboard or deterministic plotting script.
 - If image generation is unavailable, the skill falls back to returning the final image prompt and a compact Markdown recap.
-
-## GitHub Stars
-
-[![GitHub stars](https://img.shields.io/github/stars/CheeseBoo/codex-work-visualizer?style=flat)](https://github.com/CheeseBoo/codex-work-visualizer)
