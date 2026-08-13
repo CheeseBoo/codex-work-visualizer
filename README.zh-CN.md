@@ -69,6 +69,8 @@ git clone git@github.com:CheeseBoo/codex-work-visualizer.git ~/.codex/skills/cod
 
 然后重启 Codex，或开启一个新对话，让 skill 列表刷新。
 
+### 远程使用 Codex 项目
+
 如果你使用的是远程 Codex 项目，也需要在远程机器上安装：
 
 ```bash

@@ -69,6 +69,8 @@ git clone git@github.com:CheeseBoo/codex-work-visualizer.git ~/.codex/skills/cod
 
 Restart Codex or start a new conversation so the skill list is refreshed.
 
+### Remote Codex Projects
+
 For remote Codex projects, install it on the remote machine as well:
 
 ```bash
