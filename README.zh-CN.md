@@ -2,7 +2,7 @@
 
 [English](README.md) | [简体中文](README.zh-CN.md)
 
-`codex-work-visualizer` 是一个轻量级 Codex skill，用来把 Codex 刚刚完成的工作整理成一张便于快速审阅的 PNG 信息图。
+`codex-work-visualizer` 是一个轻量级 Codex skill，用来把 Codex 刚刚完成的工作整理成一张便于快速审阅的 PNG 信息图，同时兼顾使用便捷性与后续可扩展性。
 
 它适合这类提示：
 

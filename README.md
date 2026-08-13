@@ -4,7 +4,7 @@
 
 [English](README.md) | [简体中文](README.zh-CN.md)
 
-`codex-work-visualizer` is a lightweight Codex skill that turns recent Codex work into a quick PNG infographic for human review.
+`codex-work-visualizer` is a lightweight Codex skill that turns recent Codex work into a quick PNG infographic for human review, while keeping the workflow easy to use and extensible.
 
 It is designed for prompts like:
 
