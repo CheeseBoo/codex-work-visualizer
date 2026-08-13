@@ -1,5 +1,7 @@
 # Codex Work Visualizer
 
+> **From work to insight.**
+
 [English](README.md) | [简体中文](README.zh-CN.md)
 
 `codex-work-visualizer` is a lightweight Codex skill that turns recent Codex work into a quick PNG infographic for human review.
