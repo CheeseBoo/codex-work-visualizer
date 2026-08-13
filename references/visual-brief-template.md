@@ -2,7 +2,39 @@
 
 Use this file only when generating the prompt for GPT-Image-2 or another image generation tool.
 
-## Prompt Skeleton
+## Mode Selection
+
+Apply the Work Mode Gate in `SKILL.md` before using a template. Use the `Conversation-only Template` when no current-task code-change evidence is confirmed. Use the `Code-change / Mixed Template` when the current task includes confirmed code work.
+
+## Conversation-only Template
+
+```text
+Create a clean one-page conversation-analysis infographic PNG for a quick Codex work recap.
+
+Language: <Chinese or user's language>
+Audience: a researcher/developer who wants to quickly understand the reasoning and decisions from the conversation.
+Tone: professional, concise, review-oriented.
+
+Title:
+<short task title>
+
+Sections to show:
+1. Task goal: <one line>
+2. Key analysis: <4-6 short points>
+3. Conclusions or decisions: <short points>
+4. Open questions or risks: <1-3 short points or "none identified">
+5. Next step: <optional one line>
+
+Visual layout:
+- A conversation or reasoning timeline in the center.
+- Insight and decision cards instead of file/module chips.
+- No code files, source modules, git diffs, commits, or code-validation panel.
+- Use short labels only; no paragraphs.
+```
+
+## Code-change / Mixed Template
+
+Use the following prompt skeleton for `code-change` and `mixed` work:
 
 ```text
 Create a clean one-page technical infographic PNG for a quick Codex work recap.
@@ -39,6 +71,7 @@ Style:
 Accuracy constraints:
 - Do not add tasks, files, tests, percentages, or claims not present in the brief.
 - If a detail is uncertain, omit it instead of inventing it.
+- In `conversation-only` mode, never list changed files or code-validation claims.
 ```
 
 ## Compression Rules

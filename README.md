@@ -11,7 +11,7 @@ It is designed for prompts like:
 - "把刚才的工作总结成图片"
 - "Create a PNG visual recap of the work you just did"
 
-The skill favors direct GPT-Image-2 / image-generation output over HTML dashboards or scripted chart rendering. It is meant to help a user understand the main actions, changed areas, validation status, and review notes in roughly 30 seconds.
+The skill favors direct GPT-Image-2 / image-generation output over HTML dashboards or scripted chart rendering. It first classifies the work as conversation-only, code-change, or mixed. Conversation-only work is summarized from the conversation without inspecting code or git diffs; code-change work includes changed areas and validation status.
 
 ## What It Produces
 
@@ -19,12 +19,20 @@ A one-page visual review card with:
 
 - task goal
 - completed actions
-- important changed files or modules
-- validation status
+- important changed files or modules when code work is confirmed
+- validation status when code work is confirmed
 - review notes and risks
 - optional next step
 
-The image is a quick review aid, not a formal audit report. For exact verification, use the underlying conversation, command output, and `git diff`.
+The image is a quick review aid, not a formal audit report. For code-change work, use the underlying conversation, command output, and `git diff` for exact verification. For conversation-only work, use the underlying conversation and confirmed outputs.
+
+## Work Modes
+
+- `conversation-only`: explanation, research, planning, comparison, or decisions without a confirmed current-task file edit, commit, push, pull request, or code test. The skill does not inspect code or git diffs.
+- `code-change`: the current task includes confirmed file changes, repository-changing code execution, commits, pushes, pull requests, or code tests.
+- `mixed`: the current task includes both conversation analysis and confirmed code work; it follows the code-change path while retaining the conversation as context.
+
+Current-task evidence takes priority. A repository's pre-existing dirty files or old commits do not prove that the current task changed code. When code-change evidence is unclear, the skill defaults to `conversation-only`.
 
 ## Install
 
