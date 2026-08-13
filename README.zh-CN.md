@@ -11,10 +11,12 @@
 - “把刚才的工作总结成图片”
 - “Create a PNG visual recap of the work you just did”
 
-你也可以在 Codex 中直接显式调用这个 skill：
+你也可以在 Codex 中通过以下任一种形式直接显式调用这个 skill：
 
-```text
+```bash
 $codex-work-visualizer
+# 或
+/codex-work-visualizer
 ```
 
 这个 skill 优先使用 GPT-Image-2 或当前可用的图像生成能力直接生成图片，而不是构建 HTML dashboard 或用脚本绘图。它会先把本次工作区分为“纯对话分析”“代码改动”或“混合工作”：纯对话分析只依据对话和已确认的输出整理，不检查代码或 git diff；确认有代码改动时，才展示改动范围和验证状态。
