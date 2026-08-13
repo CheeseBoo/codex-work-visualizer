@@ -4,6 +4,14 @@
 
 [English](README.md) | [简体中文](README.zh-CN.md)
 
+[![GitHub Stars](https://img.shields.io/github/stars/CheeseBoo/codex-work-visualizer?style=flat)](https://github.com/CheeseBoo/codex-work-visualizer)
+[![CI](https://github.com/CheeseBoo/codex-work-visualizer/actions/workflows/validate.yml/badge.svg)](https://github.com/CheeseBoo/codex-work-visualizer/actions/workflows/validate.yml)
+[![最新版本](https://img.shields.io/github/v/release/CheeseBoo/codex-work-visualizer?style=flat)](https://github.com/CheeseBoo/codex-work-visualizer/releases)
+[![许可证](https://img.shields.io/github/license/CheeseBoo/codex-work-visualizer?style=flat)](https://github.com/CheeseBoo/codex-work-visualizer/blob/main/LICENSE)
+
+[![最近提交](https://img.shields.io/github/last-commit/CheeseBoo/codex-work-visualizer?style=flat)](https://github.com/CheeseBoo/codex-work-visualizer/commits/main)
+[![Issues](https://img.shields.io/github/issues/CheeseBoo/codex-work-visualizer?style=flat)](https://github.com/CheeseBoo/codex-work-visualizer/issues)
+
 `codex-work-visualizer` 是一个轻量级 Codex skill，用来把 Codex 刚刚完成的工作整理成一张便于快速审阅的 PNG 信息图，同时兼顾使用便捷性与后续可扩展性。它帮助使用者在面对大量审阅任务时，以尽可能少的时间完成审阅。
 
 它适合这类提示：

@@ -4,6 +4,14 @@
 
 [English](README.md) | [简体中文](README.zh-CN.md)
 
+[![GitHub stars](https://img.shields.io/github/stars/CheeseBoo/codex-work-visualizer?style=flat)](https://github.com/CheeseBoo/codex-work-visualizer)
+[![CI](https://github.com/CheeseBoo/codex-work-visualizer/actions/workflows/validate.yml/badge.svg)](https://github.com/CheeseBoo/codex-work-visualizer/actions/workflows/validate.yml)
+[![Release](https://img.shields.io/github/v/release/CheeseBoo/codex-work-visualizer?style=flat)](https://github.com/CheeseBoo/codex-work-visualizer/releases)
+[![License](https://img.shields.io/github/license/CheeseBoo/codex-work-visualizer?style=flat)](https://github.com/CheeseBoo/codex-work-visualizer/blob/main/LICENSE)
+
+[![Last commit](https://img.shields.io/github/last-commit/CheeseBoo/codex-work-visualizer?style=flat)](https://github.com/CheeseBoo/codex-work-visualizer/commits/main)
+[![Issues](https://img.shields.io/github/issues/CheeseBoo/codex-work-visualizer?style=flat)](https://github.com/CheeseBoo/codex-work-visualizer/issues)
+
 `codex-work-visualizer` is a lightweight Codex skill that turns recent Codex work into a quick PNG infographic for human review, while keeping the workflow easy to use and extensible. It helps users get through large volumes of review work in as little time as possible.
 
 It is designed for prompts like:
