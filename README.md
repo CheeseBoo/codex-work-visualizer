@@ -107,6 +107,6 @@ Skill validation passed.
 - The skill intentionally does not include an HTML dashboard or deterministic plotting script.
 - If image generation is unavailable, the skill falls back to returning the final image prompt and a compact Markdown recap.
 
-## Star History
+## GitHub Stars
 
-[![Star History Chart](https://api.star-history.com/image?repos=cheeseboo/codex-work-visualizer&type=Date)](https://www.star-history.com/#CheeseBoo/codex-work-visualizer&Date)
+[![GitHub stars](https://img.shields.io/github/stars/CheeseBoo/codex-work-visualizer?style=flat)](https://github.com/CheeseBoo/codex-work-visualizer)

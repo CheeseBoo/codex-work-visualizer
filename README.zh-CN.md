@@ -107,6 +107,6 @@ Skill validation passed.
 - 这个 skill 刻意不包含 HTML dashboard 或确定性绘图脚本。
 - 如果图像生成能力不可用，skill 会退回为输出最终图片提示词和一份紧凑的 Markdown 总结。
 
-## Star History
+## GitHub Stars
 
-[![Star History Chart](https://api.star-history.com/image?repos=cheeseboo/codex-work-visualizer&type=Date)](https://www.star-history.com/#CheeseBoo/codex-work-visualizer&Date)
+[![GitHub stars](https://img.shields.io/github/stars/CheeseBoo/codex-work-visualizer?style=flat)](https://github.com/CheeseBoo/codex-work-visualizer)
