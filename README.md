@@ -1,3 +1,5 @@
+
+
 # Codex Work Visualizer
 
 > **From work to insight.**
@@ -46,7 +48,7 @@ The image is a quick review aid, not a formal audit report. For code-change work
 
 ## Work Modes
 
-- `conversation-only`: explanation, research, planning, comparison, or decisions without a confirmed current-task file edit, commit, push, pull request, or code test. The skill does not inspect code or git diffs.
+- `conversation-only`: explanation, research, planning, comparison, or decisions without a confirmed current-task file edit, repository-changing code execution, commit, push, pull request, or code test. The skill does not inspect code or git diffs.
 - `code-change`: the current task includes confirmed file changes, repository-changing code execution, commits, pushes, pull requests, or code tests.
 - `mixed`: the current task includes both conversation analysis and confirmed code work; it follows the code-change path while retaining the conversation as context.
 
