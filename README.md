@@ -1,117 +1,146 @@
-# Codex Work Visualizer
+# Work Visualizer (for Google Antigravity & OpenAI Codex)
 
-> **From work to insight.**
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Platform Support](https://img.shields.io/badge/Platforms-Google%20Antigravity%20%7C%20OpenAI%20Codex-orange.svg)]()
+[![Model Support](https://img.shields.io/badge/Image%20Models-Google%20Imagen%203%20%7C%20GPT--Image--2-purple.svg)]()
+[![Agent Native](https://img.shields.io/badge/Agent-Native%20Self--Install-brightgreen.svg)]()
 
-[English](README.md) | [简体中文](README.zh-CN.md)
+[English](README.md) | [简体中文](README.zh-CN.md) | [📖 Instructions for AI Agents](AGENTS.md)
 
-[![GitHub stars](https://img.shields.io/github/stars/CheeseBoo/codex-work-visualizer?style=flat)](https://github.com/CheeseBoo/codex-work-visualizer)
-[![CI](https://github.com/CheeseBoo/codex-work-visualizer/actions/workflows/validate.yml/badge.svg)](https://github.com/CheeseBoo/codex-work-visualizer/actions/workflows/validate.yml)
-[![Release](https://img.shields.io/github/v/release/CheeseBoo/codex-work-visualizer?style=flat)](https://github.com/CheeseBoo/codex-work-visualizer/releases)
-[![License](https://img.shields.io/github/license/CheeseBoo/codex-work-visualizer?style=flat)](https://github.com/CheeseBoo/codex-work-visualizer/blob/main/LICENSE)
+`codex-work-visualizer` is a lightweight visual review skill that turns recent AI agent engineering work into a clean, widescreen **PNG technical infographic** for fast human review (roughly 30 seconds).
 
-[![Last commit](https://img.shields.io/github/last-commit/CheeseBoo/codex-work-visualizer?style=flat)](https://github.com/CheeseBoo/codex-work-visualizer/commits/main)
-[![Issues](https://img.shields.io/github/issues/CheeseBoo/codex-work-visualizer?style=flat)](https://github.com/CheeseBoo/codex-work-visualizer/issues)
+Originally crafted for OpenAI Codex, **Version 2.0 now brings first-class native support for Google Antigravity & Gemini 3.8 models**, powered by **Google Imagen 3** (`generate_image`) with 16:9 widescreen layouts, multi-agent **Teamwork** progress summaries, and optional companion review artifacts.
 
-`codex-work-visualizer` is a lightweight Codex skill that turns recent Codex work into a quick PNG infographic for human review, while keeping the workflow easy to use and extensible. It helps users get through large volumes of review work in as little time as possible.
+---
 
-It is designed for prompts like:
+## ⚡ Instant Setup: Drop to Your Agent
 
-- "Visualize what you just did"
-- "Generate an infographic for this work"
-- "Turn the work you just did into an image summary"
-- "Create a PNG visual recap of the work you just did"
+You don't need to manually configure folders. **Simply send this repository URL (or local path) to your AI Agent** (in Google Antigravity, OpenAI Codex, or Claude Code) and say:
 
-You can also invoke the skill directly in Codex with either of these forms:
+> *"Please inspect https://github.com/CheeseBoo/codex-work-visualizer and equip yourself with this skill."*
 
-```bash
-$codex-work-visualizer
-# or
-/codex-work-visualizer
-```
+Your Agent will read [`AGENTS.md`](AGENTS.md), auto-detect its host environment (`~/.gemini/config/skills/` or `~/.codex/skills/`), and install itself non-destructively!
 
-The skill favors direct GPT-Image-2 / image-generation output over HTML dashboards or scripted chart rendering. It first classifies the work as conversation-only, code-change, or mixed. Conversation-only work is summarized from the conversation without inspecting code or git diffs; code-change work includes changed areas and validation status.
+---
 
-## What It Produces
+## 🎯 When to Use
 
-A one-page visual review card with:
+Trigger the skill anytime with natural commands such as:
 
-- task goal
-- completed actions
-- important changed files or modules when code work is confirmed
-- validation status when code work is confirmed
-- review notes and risks
-- optional next step
+- *"可视化一下你刚才做了什么"*
+- *"生成本次工作信息图"*
+- *"把刚才的工作总结成图片"*
+- *"Create a PNG visual recap of what you just did"*
+- *"Summarize recent work into an infographic"*
 
-The image is a quick review aid, not a formal audit report. For code-change work, use the underlying conversation, command output, and `git diff` for exact verification. For conversation-only work, use the underlying conversation and confirmed outputs.
+---
 
-## Work Modes
+## 🚀 Key Features in Version 2.0
 
-- `conversation-only`: explanation, research, planning, comparison, or decisions without a confirmed current-task file edit, commit, push, pull request, or code test. The skill does not inspect code or git diffs.
-- `code-change`: the current task includes confirmed file changes, repository-changing code execution, commits, pushes, pull requests, or code tests.
-- `mixed`: the current task includes both conversation analysis and confirmed code work; it follows the code-change path while retaining the conversation as context.
+### 1. Google Antigravity Native Optimization
+- **Imagen 3 Integration**: Natively invokes Antigravity's `generate_image` tool with a dedicated 16:9 or 4:3 widescreen technical dashboard prompt.
+- **Teamwork & Multi-Agent Awareness**: Aggregates coordinated outcomes across multiple subagents (Architect, Implementer, QA Verifier) and background task outputs (`tasks`).
 
-Current-task evidence takes priority. A repository's pre-existing dirty files or old commits do not prove that the current task changed code. When code-change evidence is unclear, the skill defaults to `conversation-only`.
+### 2. Dual-Track Modality (Visual Card + Companion Artifact)
+- **Track 1 (Widescreen Infographic PNG - Default)**: Rapid 30-second executive summary covering goals, actions, changed modules, test badges, and review notes.
+- **Track 2 (Companion Review Artifact - Antigravity)**: When detailed code-level auditing is needed, generates a Markdown artifact with exact commit diffs, clickable file links, and test logs.
 
-## Install
+### 3. Full Backward Compatibility
+- Seamlessly falls back to `GPT-Image-2` when running inside the OpenAI Codex environment.
 
-### Agent-Assisted Install (Recommended)
+---
 
-We recommend asking Codex, Claude Code, or another AI coding agent to install the skill automatically. Give the agent this GitHub repository URL and ask it to place the skill in the active skills directory and run the validation script.
+## 📊 What the Review Card Contains
 
-Suggested prompt:
+A clean, high-signal one-page visual card displaying:
 
 ```text
-Install https://github.com/CheeseBoo/codex-work-visualizer as a local AI skill.
-Clone it into ~/.codex/skills/codex-work-visualizer, read SKILL.md, and run the validation script.
-If this is a remote development session, install it on the remote machine that runs the agent.
+┌────────────────────────────────────────────────────────────────────────┐
+│                        PROJECT MILESTONE RECAP                         │
+├───────────────────────┬────────────────────────┬───────────────────────┤
+│ 🎯 TASK GOAL          │ 📦 CHANGED MODULES     │ 🧪 VALIDATION STATUS  │
+│ Enterprise RAG Studio │ • auth/jwt_service     │ ✅ Unit tests passed  │
+│ with hybrid retrieval │ • ui/dashboard.tsx     │ ✅ TypeScript clean   │
+│                       │ • tests/test_rag.py    │ ⚠️ E2E pending review │
+├───────────────────────┴────────────────────────┴───────────────────────┤
+│ ✅ COMPLETED ACTIONS                                                   │
+│ • Implemented BM25 + dense vector hybrid retrieval pipeline            │
+│ • Added responsive KPI metric cards to frontend dashboard              │
+│ • Validated 14 unit test cases with zero regression errors             │
+├────────────────────────────────────────────────┬───────────────────────┤
+│ ⚠️ NEEDS REVIEW                                │ 🚀 NEXT STEP          │
+│ • Verify API rate limits under high concurrency│ • Staging deployment  │
+└────────────────────────────────────────────────┴───────────────────────┘
 ```
 
-### Manual Install
+---
 
-If you prefer to install the skill yourself, clone the repository into your Codex skills directory:
+## 📦 Manual Installation
 
+### Automated Installer (Recommended)
 ```bash
-mkdir -p ~/.codex/skills
-git clone git@github.com:CheeseBoo/codex-work-visualizer.git ~/.codex/skills/codex-work-visualizer
+git clone https://github.com/CheeseBoo/codex-work-visualizer.git
+cd codex-work-visualizer
+bash install.sh
 ```
+The script will automatically detect and link to:
+- Google Antigravity: `~/.gemini/config/skills/codex-work-visualizer`
+- OpenAI Codex: `~/.codex/skills/codex-work-visualizer`
 
-Restart Codex or start a new conversation so the skill list is refreshed.
-
-### Remote Codex Projects
-
-For remote Codex projects, install it on the remote machine as well:
-
+### Manual Symlink
 ```bash
+# For Google Antigravity
+mkdir -p ~/.gemini/config/skills
+ln -sfn "$(pwd)" ~/.gemini/config/skills/codex-work-visualizer
+
+# For OpenAI Codex
 mkdir -p ~/.codex/skills
-git clone git@github.com:CheeseBoo/codex-work-visualizer.git ~/.codex/skills/codex-work-visualizer
+ln -sfn "$(pwd)" ~/.codex/skills/codex-work-visualizer
 ```
 
-Although this repository is packaged as a Codex skill, the workflow is intentionally simple Markdown guidance. It can be adapted easily for Claude Code, Cursor, or other similar AI coding tools by copying the core instructions from `SKILL.md` into that tool's project or agent-instruction mechanism.
+---
 
-## Repository Layout
+## 🧪 Validation
 
-```text
-SKILL.md
-agents/openai.yaml
-references/visual-brief-template.md
-scripts/validate_skill.py
-```
-
-## Validate
+Run the test suite to verify skill integrity:
 
 ```bash
 python3 scripts/validate_skill.py .
 ```
 
-Expected result:
-
+Expected output:
 ```text
 Skill validation passed.
 ```
 
-## Notes
+---
 
-- The repository root is the skill root.
-- The skill intentionally does not include an HTML dashboard or deterministic plotting script.
-- If image generation is unavailable, the skill falls back to returning the final image prompt and a compact Markdown recap.
-- If you find this repository useful, please star it 🌟 to follow future updates.
+## 📂 Repository Layout
+
+```text
+codex-work-visualizer/
+├── AGENTS.md                         # Agent-native self-installation instructions
+├── install.sh                        # Automated cross-platform installer
+├── SKILL.md                          # Core skill definition (Antigravity & Codex)
+├── README.md                         # English documentation
+├── README.zh-CN.md                   # Chinese documentation
+├── references/
+│   ├── visual-brief-template.md      # Prompt skeleton optimized for Imagen 3 / GPT-Image-2
+│   └── interactive-artifact-spec.md  # Companion artifact specification for Antigravity
+├── agents/
+│   └── openai.yaml                   # OpenAI Codex agent integration manifest
+└── scripts/
+    └── validate_skill.py             # Skill schema & contract validation script
+```
+
+---
+
+## 🌟 Star History
+
+[![Star History Chart](https://api.star-history.com/image?repos=cheeseboo/codex-work-visualizer&type=Date)](https://www.star-history.com/#CheeseBoo/codex-work-visualizer&Date)
+
+---
+
+## 📄 License
+
+Distributed under the [MIT License](LICENSE). Maintained by [CheeseBoo](https://github.com/CheeseBoo) and community contributors.

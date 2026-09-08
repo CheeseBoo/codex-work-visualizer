@@ -1,15 +1,21 @@
 ---
 name: codex-work-visualizer
-description: "Create a quick PNG infographic of recent Codex work using GPT-Image-2 or the available image generation tool. Use when the user asks to visualize what Codex just did, 可视化一下你刚才做了什么, 生成本次工作信息图, 把刚才的工作总结成图片, make a visual summary, create a PNG work recap, or wants a fast visual review card for code changes or conversation-only analysis. Classify the work mode first; for conversation-only work, do not inspect code or git diffs. Prefer direct image generation over HTML, dashboards, or scripted plotting unless the user asks for those."
+description: "Create a quick PNG infographic of recent AI agent work using Google Antigravity (generate_image / Imagen 3), GPT-Image-2, or the session's available image tool. Use when the user asks to visualize what the agent just did, 可视化一下你刚才做了什么, 生成本次工作信息图, 把刚才的工作总结成图片, make a visual summary, create a PNG work recap, or wants a fast visual review card for code changes or conversation-only analysis. Classify the work mode first; for conversation-only work, do not inspect code or git diffs. Natively optimized for Google Antigravity & OpenAI Codex."
 ---
 
-# Codex Work Visualizer
+# Work Visualizer (for Google Antigravity & OpenAI Codex)
 
 ## Core Rule
 
-Create one lightweight PNG work-recap infographic for fast human review. Prioritize visual clarity and truthful summarization over exhaustive audit detail. Do not build an HTML dashboard, SVG pipeline, or Python-rendered chart unless the user explicitly asks or image generation is unavailable.
+Create one lightweight, high-signal PNG work-recap infographic for fast human review (roughly 30 seconds). Prioritize visual clarity and truthful summarization over exhaustive audit detail.
 
-Use GPT-Image-2 / the session's available image generation tool as the default rendering path. The image is a quick review aid, not a formal audit log.
+- In **Google Antigravity**: Call `generate_image` natively (prefer `AspectRatio="16:9"` or `"4:3"` for technical dashboards). When the user explicitly requests an interactive review or full breakdown, also provide a companion Markdown artifact.
+- In **OpenAI Codex**: Call `GPT-Image-2` / the session's available image generation tool as the default rendering path.
+- In generic environments: Generate the image via the active image-generation tool, or fall back to the structured visual brief and Markdown recap.
+
+The visual recap is a quick review aid, not a formal or blocking audit log.
+
+---
 
 ## Work Mode Gate
 
@@ -19,65 +25,86 @@ Classify the reviewed scope before running repository checks or analyzing code:
 - `code-change`: the current task contains at least one confirmed file edit, repository-changing code execution, commit, push, pull request, or code test. A commit is not required when a current-task edit is confirmed.
 - `mixed`: the current task contains both conversation analysis and confirmed code work. Process it through the `code-change` path and use the conversation as context.
 
-Use evidence from the current task first: the user's request, the assistant's actions, changed files, and validation results. The presence of a repository, pre-existing dirty files, or old commits alone is not evidence of a current code change. If code-change evidence cannot be confirmed, default to `conversation-only`.
+Use evidence from the current task first: the user's request, the assistant's actions, changed files, background task logs, and validation results. The presence of a repository, pre-existing dirty files, or old commits alone is not evidence of a current code change. If code-change evidence cannot be confirmed, default to `conversation-only`.
 
 For `conversation-only` work, do not run `git status`, `git diff`, or source inspection; do not infer changed modules or report code validation. Build the recap from the conversation and confirmed non-code outputs only.
 
+---
+
 ## Workflow
 
-1. Identify the reviewed scope: usually the work since the user's last task request or since the last final answer.
-2. Apply the Work Mode Gate.
-3. For `conversation-only`, gather facts only from the conversation and confirmed outputs:
-   - one task goal
-   - key analysis points and conclusions
-   - decisions or open questions
-   - one to three risks, uncertainties, or next steps
-4. For `code-change` or `mixed`, gather facts from the conversation and, when relevant, quick local checks:
-   - `git status --short`
-   - `git diff --stat`
-   - targeted `git diff -- <file>` only when needed to understand important edits
-   Use only current-task changes when possible; do not treat unrelated pre-existing worktree state as completed work.
-5. Extract a compact mode-specific visual brief:
-   - `conversation-only`: task goal, four to six analysis or decision points, conclusions, open questions, risks, and an optional next step. Omit changed files, code modules, and code validation.
-   - `code-change` or `mixed`: task goal, four to six completed actions, three to eight important files/modules, validation status, risks, and an optional next step.
-6. Read `references/visual-brief-template.md` for the image prompt structure.
-7. Call the image generation tool directly with a single infographic prompt. Keep visible text short and concrete. Prefer Chinese labels when the user is speaking Chinese; otherwise use the user's language.
-8. Return the generated PNG/image first, then a short note listing the factual basis. If the image tool provides a file path, place or reference it as `work-reports/latest/codex-work-summary.png` when practical.
+1. **Identify Reviewed Scope**:
+   - The actions taken since the user's last task request or since the last major milestone.
+   - For multi-agent tasks (such as Antigravity Teamwork / subagents), summarize the coordinated outcomes across roles.
+
+2. **Apply Work Mode Gate**:
+   - Determine whether the scope is `conversation-only`, `code-change`, or `mixed`.
+
+3. **Gather Factual Evidence**:
+   - **For `conversation-only`**:
+     - Extract task goal, key analysis points, decisions/conclusions, and next steps strictly from the dialogue.
+   - **For `code-change` or `mixed`**:
+     - Check tool execution results and Antigravity background task logs under `.system_generated/tasks/` if applicable.
+     - Inspect git state: `git status --short`, `git diff --stat`, and targeted diffs for critical edits.
+     - Isolate current-task edits; do not treat unrelated pre-existing dirty files as completed work.
+
+4. **Extract Compact Visual Brief**:
+   - Read `references/visual-brief-template.md` for mode-specific prompt structures:
+     - `conversation-only`: Goal, analysis points, decisions, open questions/risks, next step. No code files or code validation.
+     - `code-change` / `mixed`: Task goal, completed actions, key changed areas (modules), validation status, needs review notes, next step.
+
+5. **Render the Visual Output**:
+   - **In Google Antigravity**:
+     Call `generate_image` directly:
+     ```python
+     generate_image(
+         Prompt="<Structured Infographic Prompt based on visual-brief-template.md>",
+         ImageName="work_recap_infographic",
+         AspectRatio="16:9" # or "4:3"
+     )
+     ```
+   - **In OpenAI Codex / Other**:
+     Call `GPT-Image-2` or the available session image generation tool.
+
+6. **Deliver Response**:
+   - Return the generated PNG/image first.
+   - Follow with a concise factual recap note:
+     ```text
+     Work mode: <conversation-only | code-change | mixed>
+     Scope: <reviewed scope>
+     Basis: <git / commands / tasks reviewed>
+     Review focus: <key highlights or next actions>
+     ```
+
+---
 
 ## Image Content Rules
 
-- Use only facts supported by the conversation, git state, or commands run in the current task.
-- Do not invent tests, changed files, progress, failures, or next steps.
-- In `conversation-only` mode, do not add code files, modules, diffs, commits, or code-validation claims.
-- If exact file paths are too long for the image, shorten them to module names and include exact paths in the short note or `image-brief.md` if saved.
-- Keep the infographic to one page: title, workflow/timeline, mode-appropriate evidence, risk notes.
-- Use clear status marks: Done, Passed, Failed, Not run, Needs review.
-- Avoid dense paragraphs, tiny text, decorative clutter, or excessive file lists.
+- **Truthful Only**: Use only facts supported by the conversation, git state, or executed commands. Never invent tests, files, metrics, or passes.
+- **Mode Discipline**: In `conversation-only` mode, do not add code files, modules, diffs, commits, or code-validation claims.
+- **Short Labels**: Avoid dense paragraphs or tiny unreadable code blocks. Shorten long paths to module names (e.g., `src/auth` instead of `/path/to/src/auth/jwt.py`).
+- **Clear Status Indicators**: Use unmistakable status badges (Done, Passed, Failed, Not run, Needs review).
+- **Clean Color Semantics**:
+  - Slate/navy for structure and headers.
+  - Emerald green for completed work and passed tests.
+  - Amber/orange for warnings or review notes.
+  - Crimson red strictly reserved for test failures.
+- **Language Alignment**: Prefer Chinese labels when the user converses in Chinese; otherwise use English or user's primary language.
+
+---
 
 ## Output Defaults
 
-Default visible output:
+1. **Default visible output**:
+   - The generated PNG infographic.
+   - A concise factual note (Work mode, Scope, Basis, Review focus).
 
-1. The generated PNG/image.
-2. A concise factual note:
+2. **Optional companion artifact (Antigravity mode)**:
+   - When the user asks for "详细复盘", "打开复盘看板", or when code diffs are complex, generate an artifact (`references/interactive-artifact-spec.md`) detailing the exact commit hashes, file changes, and validation logs.
 
-```text
-Work mode:
-Scope:
-Basis:
-Saved:
-Review focus:
-```
-
-Optional saved files when the local workspace is available and saving is useful:
-
-```text
-work-reports/latest/image-brief.md
-work-reports/latest/codex-work-summary.png
-```
-
-Do not block the image on perfect audit completeness. If some facts are unavailable, mark them as "not visible" or omit them.
+---
 
 ## References
 
-- `references/visual-brief-template.md`: prompt skeleton and compact layout rules for GPT-Image-2.
+- `references/visual-brief-template.md`: Mode-specific prompt skeletons for Google Imagen 3 and GPT-Image-2.
+- `references/interactive-artifact-spec.md`: Companion artifact specification for Antigravity Webview / Markdown reviews.
