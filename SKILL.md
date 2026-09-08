@@ -67,8 +67,11 @@ For `conversation-only` work, do not run `git status`, `git diff`, or source ins
      Call `GPT-Image-2` or the available session image generation tool.
 
 6. **Deliver Response**:
-   - Return the generated PNG/image first.
-   - Follow with a concise factual recap note:
+   - **In Google Antigravity**:
+     - Always create/update an Artifact (e.g. `work_recap.md`) with `write_to_file`, embedding the image via `![Work Recap Infographic](<saved_image_path>)`. This automatically opens Antigravity's high-resolution visual preview pane on the right.
+     - In the visible chat response, also embed the image directly using `![Work Recap](<saved_image_path>)` followed by the concise factual note so the image renders visibly in the chat bubble.
+   - **In OpenAI Codex / Other**:
+     - Return the generated PNG/image directly, followed by the factual note:
      ```text
      Work mode: <conversation-only | code-change | mixed>
      Scope: <reviewed scope>
@@ -95,12 +98,13 @@ For `conversation-only` work, do not run `git status`, `git diff`, or source ins
 
 ## Output Defaults
 
-1. **Default visible output**:
-   - The generated PNG infographic.
-   - A concise factual note (Work mode, Scope, Basis, Review focus).
+1. **In Google Antigravity**:
+   - A dedicated Markdown Artifact (e.g. `work_recap.md`) embedding the generated infographic PNG.
+   - In chat: The embedded image `![Work Recap](<saved_path>)` followed by the concise factual note.
 
-2. **Optional companion artifact (Antigravity mode)**:
-   - When the user asks for "详细复盘", "打开复盘看板", or when code diffs are complex, generate an artifact (`references/interactive-artifact-spec.md`) detailing the exact commit hashes, file changes, and validation logs.
+2. **In OpenAI Codex / Generic**:
+   - The generated PNG infographic returned directly.
+   - A concise factual note (Work mode, Scope, Basis, Review focus).
 
 ---
 
